@@ -1,0 +1,133 @@
+package shoba_assign;
+
+import java.lang.reflect.Array;
+import java.util.Scanner;
+public class PackersAndMovers {
+	private int invoiceNo;
+	private String fromCity;
+	private String toCity;
+	private String orderDate;
+	private String DeliveryDate;
+	private double price;
+	
+	PackersAndMovers(int a, String b, String c, String d, String e, double f)
+	{
+		this.invoiceNo=a;
+		this.fromCity=b;
+		this.toCity=c;
+		this.orderDate=d;
+		this.DeliveryDate=e;
+		this.price=f;
+	}
+
+	public int getInvoiceNo() {
+		return invoiceNo;
+	}
+
+	public void setInvoiceNo(int invoiceNo) {
+		this.invoiceNo = invoiceNo;
+	}
+
+	public String getFromCity() {
+		return fromCity;
+	}
+
+	public void setFromCity(String fromCity) {
+		this.fromCity = fromCity;
+	}
+
+	public String getToCity() {
+		return toCity;
+	}
+
+	public void setToCity(String toCity) {
+		this.toCity = toCity;
+	}
+
+	public String getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(String orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public String getDeliveryDate() {
+		return DeliveryDate;
+	}
+
+	public void setDeliveryDate(String deliveryDate) {
+		DeliveryDate = deliveryDate;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	
+	
+	
+	
+	
+}
+class myClass
+{
+	static int countOrdersDeliveredInAWeek( PackersAndMovers[] a, String i2)
+	{
+		PackersAndMovers[] b = null;
+		int z=0;
+		int result=0;
+		Object as;
+		for (int i=0;i<a.length;i++)
+		{
+			if (i2.equalsIgnoreCase(a[i].getFromCity()))
+			{
+				b[z]=a[i];
+				z++;
+			}
+		}
+		for (int i=0;i<b.length;i++)
+		{
+			int od=0;
+			int dd=0;
+			String od_s=b[i].getOrderDate();
+			String dd_s=b[i].getDeliveryDate();
+			String[] AArray1 = od_s.split("-");
+			String[] AArray2 = dd_s.split("-");
+			od=Integer.parseInt(AArray1[0]);
+			dd=Integer.parseInt(AArray2[1]);
+			
+			
+			if((dd-od)<=7)
+			{
+				result++;
+			}
+		}
+		
+		return result;
+		
+	}
+	
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		PackersAndMovers[] a = null;
+		for (int i=0;i<4;i++)
+		{
+			int q1 = sc.nextInt();
+			String q2=sc.nextLine();
+			String q3=sc.nextLine();
+			String q4=sc.nextLine();
+			String q5=sc.nextLine();
+			double q6=sc.nextDouble();
+			PackersAndMovers pm=new PackersAndMovers(q1,q2,q3,q4,q5,q6);
+			a[i]=pm;
+			
+		}
+		String o=sc.nextLine();
+		int fi_result= countOrdersDeliveredInAWeek(a,o);
+	}
+}
